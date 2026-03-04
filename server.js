@@ -23,8 +23,6 @@ aplicacion.post('/tareas', (req,res) => {
 
     tareas.push(nuevaTarea);
 
-    console.log(tareas)
-
     res.json(nuevaTarea);
 
 })
