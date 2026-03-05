@@ -1,6 +1,8 @@
 const express = require("express");
 const aplicacion = express();
 const tareas = require("./tareas/tareas");
+const usuariosRegistrados = require('./usuarios/usuarios')
+
 
 aplicacion.use(express.json())
 
@@ -29,7 +31,23 @@ aplicacion.post('/tareas', (req,res) => {
 
 aplicacion.get('/tareas', (req,res) => {
     res.end(tareas);
+
 })
+
+aplicacion.post('/usuarios',(req,res) => {
+    const nuevoUsuario = {
+        idUsuario: req.body.idUsuario,
+        nombreUsuario: req.body.nombreUsuario,
+        apellidoUsuario: req.body.apellido,
+        ocupacion: req.body.ocupacion,
+        edad: req.body.edad
+    }
+
+    usuariosRegistrados.push(nuevoUsuario);
+
+    res.json(usuariosRegistrados);
+})
+
 
 aplicacion.listen(3000, () => {
     console.log('Servidor funcionando.')
