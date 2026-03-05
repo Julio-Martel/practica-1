@@ -34,18 +34,25 @@ aplicacion.get('/tareas', (req,res) => {
 
 })
 
+aplicacion.get('/usuarios', (req,res) => {
+    res.json(usuariosRegistrados);
+})
+
 aplicacion.post('/usuarios',(req,res) => {
+
     const nuevoUsuario = {
-        idUsuario: req.body.idUsuario,
+        id: usuariosRegistrados.length + 1,
         nombreUsuario: req.body.nombreUsuario,
-        apellidoUsuario: req.body.apellido,
+        apellidoUsuario: req.body.apellidoUsuario,
         ocupacion: req.body.ocupacion,
         edad: req.body.edad
     }
 
     usuariosRegistrados.push(nuevoUsuario);
 
-    res.json(usuariosRegistrados);
+    res.json(nuevoUsuario);
+    console.log(usuariosRegistrados)
+
 })
 
 
