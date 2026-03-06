@@ -48,11 +48,14 @@ aplicacion.post('/usuarios',(req,res) => {
         edad: req.body.edad
     }
 
-    usuariosRegistrados.push(nuevoUsuario);
 
-    res.json(nuevoUsuario);
-    console.log(usuariosRegistrados)
+    if(nuevoUsuario.nombreUsuario === null){
+        res.end('Se requiere nombre');
+    } else {
+        usuariosRegistrados.push(nuevoUsuario);
 
+        res.json(nuevoUsuario);
+    }
 })
 
 
