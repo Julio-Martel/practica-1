@@ -28,7 +28,9 @@ aplicacion.post('/productos', (req,res) => {
         const productoincluido = productos.some(prod => prod.codigo === nuevoProducto.codigo);
 
         if(productoincluido){
-            res.end('producto ya cargado');
+            return res.status(400).json({
+                error: 'El producto esta ya en el listado'
+            })
         } else {
             productos.push(nuevoProducto);
             res.json(nuevoProducto);
